@@ -1,0 +1,26 @@
+# Importing modules
+include math
+import random
+
+name="This is a var"
+svar(name)
+svar_read(name)
+
+
+
+# Basic Bee# function
+function greet(name) {
+    doc.log('Hello, ' + name + '!');
+}
+
+# Using super variables
+svar(name)
+name = "Bee# Language"
+svar_read(name)
+greet(name)
+
+# Throwing an error
+doc.error("This is a sample error message.")
+
+# Ending the code
+end()
