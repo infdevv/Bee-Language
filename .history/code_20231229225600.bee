@@ -1,8 +1,0 @@
-
-#include security
-
-plaintext = "Hello, World!"
-shift_value = 3
-ciphered_text = caesar_cipher(plaintext, shift_value)
-print(f"Original Text: {plaintext}")
-print(f"Ciphered Text: {ciphered_text}")

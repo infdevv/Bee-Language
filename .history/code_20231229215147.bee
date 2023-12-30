@@ -1,5 +1,0 @@
-
-
-int test = 3
-
-doc.log(test)

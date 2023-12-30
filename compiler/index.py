@@ -44,55 +44,9 @@ def main_init_super_variable_function_read(variable):
     with open(f"super_var/{name_var}.txt", "r") as f:
         return f.read()
 
-def main_init_transfer_javascript(code):
-    random_name = str(random.randint(100000, 999999))
-    js_file_path = Path(f"temp/{random_name}.js")
-
-    with js_file_path.open("w") as f:
-        f.write(code)
-
-    try:
-        subprocess.run(["node", "--version"], check=True)
-    except subprocess.CalledProcessError:
-        raise SyntaxError("Error: Node.js is not installed or not available. Please install Node.js and try again.")
-
-    js_runner_path = Path("js_runner.js")
-    
-    with js_runner_path.open("w+") as f:
-        f.write(code)
-
-    subprocess.Popen(["node", str(js_runner_path)])
-
-    print("Swapped to javascript")
-    quit()
 
 # Other functions remain unchanged...
 
-def main_init_javascript_runner(code, runtime):
-    if not runtime:
-        print("No runtime specified. Automatically setting runtime to 1000ms")
-        runtime = 1000
-
-    try:
-        subprocess.run(["node", "--version"], check=True)
-    except subprocess.CalledProcessError:
-        raise SyntaxError("Error: Node.js is not installed or not available. Please install Node.js and try again.")
-
-    random_name = str(random.randint(100000, 999999))
-    js_file_path = Path(f"temp/{random_name}.js")
-
-    with js_file_path.open("w") as f:
-        f.write(code)
-
-    try:
-        subprocess.run(["node", str(js_file_path)], timeout=runtime / 1000)
-    except subprocess.TimeoutExpired:
-        if sys.platform == "win32":
-            subprocess.run(["taskkill", "/f", "/im", "node.exe"])
-        else:
-            subprocess.run(["pkill", "node"])
-    finally:
-        os.remove(js_file_path)
 
 def main_init_cleanup_super_variable():
     print("")   
@@ -116,10 +70,8 @@ def compiler(string):
     string = string.replace("file.read", "main_init_read_file")
     string = string.replace("doc.log", "print")
     string = string.replace("doc.error", "raise ValueError")
-    string = string.replace("javascript_exec","main_init_javascript_runner")
     string = string.replace("svar", "main_init_super_variable_function")
     string = string.replace("svar_read", "main_init_super_variable_function_read")
-    string = string.replace("js_transfer", "main_init_transfer_javascript")
     string = string.replace("end()", "main_init_cleanup_super_variable()")
     
     new_string = string.split("\n")
