@@ -195,8 +195,6 @@ def compiler(string):
 
                     line=line+"="+str(types[item])
                     line=line.replace(" ", "")
-                elif item != "str":
-                    line=line.replace(" ", "")    
                 line=line.replace(item, "")
 
 

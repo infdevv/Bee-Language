@@ -1,5 +1,5 @@
 
 
-int test = 3
+int test 
 
 doc.log(test)

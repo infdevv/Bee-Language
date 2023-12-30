@@ -1,0 +1,21 @@
+// This is NOT apart of the Bee# language
+// This is a testing file
+
+function test(){
+    doc.log("HI")
+}
+
+#include this // This is a bee# include ( import ). this imports a bee# module that is on the site
+import this # this is a python comment cause both styles work. this imports a traditional python module
+
+var="this would be a long string that cant fit into ram" // Yes
+svar(var) // Turn it into a super-variable ( Only in bee#! ) that stores the variable in a file 
+
+doc.log(svar_read(var)) // Get the super variable and print it 
+
+const my_super_duper_important_unchangeable_thing="pls dont change me" // you cant do constants in python, but in bee# you can
+
+// I would put my_super_duper_important_unchangeable_thing="f" here but it would throw an error
+
+live.terminal.start()
+live.terminal.write("HI, this is a live terminal hosted by yours truly, bee# ")

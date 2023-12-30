@@ -99,8 +99,6 @@ def main_init_cleanup_super_variable():
 
 def compiler(string):
 
-    variable_types = ["int", "float", "str", "bool"] # " This is a surprise tool that will help us later " - Mickey Mouse 
-
     invalid_terms=["main_init_live_terminal","main_init_live_terminal_write", "main_init_live_terminal_clear", "main_init_live_terminal_end", "main_init_transfer_javascript","main_init_super_variable_function", "main_init_super_variable_function_read", "main_init_cleanup_super_variable", "main_init_write_file", "main_init_read_file", "main_init_javascript_runner"]
 
     for term in invalid_terms:
@@ -180,25 +178,6 @@ def compiler(string):
         if line.endswith("}"):
             expected -= 1
             line = line[:-1]
-
-        for item in variable_types:
-            if line.startswith(item):
-                # Do a lil thing known as: if its not defined as anything in it such as: " int a " then we will define it for them
-                # check if = is in the line
-                if "=" not in line:
-                    types={
-                        "int": 0,
-                        "float": 0.0,
-                        "str": '""',
-                        "bool": False
-                    }
-
-                    line=line+"="+str(types[item])
-                    line=line.replace(" ", "")
-                elif item != "str":
-                    line=line.replace(" ", "")    
-                line=line.replace(item, "")
-
 
         new.append(line)
 
