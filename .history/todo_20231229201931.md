@@ -1,0 +1,7 @@
+v.1.2 of Bee#
+git remote add origin <repository_url>
+
+- Add constants [X]
+- Fix modules [X]
+- The zen of Bee#
+- Convinient standered libarry [X]
