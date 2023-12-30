@@ -1,9 +1,0 @@
-// This is NOT apart of the Bee# language
-// This is a testing file
-
-function test(){
-    doc.log("HI")
-}
-
-#include this
-import this
