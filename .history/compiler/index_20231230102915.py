@@ -5,7 +5,7 @@ import asyncio
 import random
 from pathlib import Path
 
-version=1.4 
+version=1.3 
 
 
 """
