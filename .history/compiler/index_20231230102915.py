@@ -5,7 +5,7 @@ import asyncio
 import random
 from pathlib import Path
 
-version=1.4 
+version=1.3 
 
 
 """
@@ -15,7 +15,6 @@ Bee# Compiler
 bee# will be the first language to be a super set of a lanngugage yet stil be able to run another language
 
 """
-
 
 def main_init_live_terminal_end():
     with open("live_trm/live_terminal.txt", "w+") as f:
@@ -114,16 +113,6 @@ def compiler(string):
             file_path = os.path.abspath(os.path.join(script_dir, "site_packages", file_name))
             if os.path.exists(file_path):
                 with open(file_path, "r") as f:
-                    with open("temp\\file_data.txt", "w+") as a:
-                        a.write(file_path)
-                    with open("check_auth.bee","r") as r:
-                        compile(r.read())
-                    with open("temp\\auth_result.txt") as c:
-                        if (c.read() == "y"):
-                            print("", end="")
-                        else:
-                            raise SyntaxWarning("Module auth failure ( Module has errors )")
-                            
                     exec(f.read())
 
 
@@ -131,7 +120,7 @@ def compiler(string):
             # Now brutally fuck the file up, aka delete it    
 
          except FileNotFoundError:
-            raise ModuleNotFoundError(f"Module {line.replace('#include ', '')} was not found.")
+            raise FileNotFoundError(f"Module {line.replace('#include ', '')} was not found.")
          except Exception as e:
              raise SyntaxError(f"Error executing module {line.replace('#include ', '')}: {str(e)}")
    

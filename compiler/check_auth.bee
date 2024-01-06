@@ -1,0 +1,16 @@
+with open("temp\\auth_result.txt", "w+") as r{
+        r.write("y")
+    }
+
+try{
+    with open("temp\\file_data.txt", "r") as r{
+        code = r.read()
+
+        exec(code)
+    }
+}
+except SyntaxError as e{
+    with open("temp\\auth_result.txt", "w+") as f{
+        f.write("n")
+    }
+}
