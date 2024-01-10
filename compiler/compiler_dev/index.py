@@ -16,6 +16,7 @@ bee# will be the first language to be a super set of a lanngugage yet stil be ab
 
 """
 
+
 def main_init_live_terminal_end():
     with open("live_trm/live_terminal.txt", "w+") as f:
         f.write("+-end_stream-+")
