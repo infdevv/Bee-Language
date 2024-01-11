@@ -4,6 +4,7 @@ import subprocess
 import asyncio
 import random
 from pathlib import Path
+from time import sleep
 
 version=1.4 
 
@@ -76,6 +77,7 @@ def compiler(string):
     new = []
     expected = 0
     exit = 1
+    doc1 = ""
     
     for line in new_string:
         if line == new_string[-1]:
@@ -114,7 +116,7 @@ def compiler(string):
                 with open(file_path, "r") as f:
                 
                             
-                    exec(f.read())
+                    doc1=doc1+"\n"+(f.read())
 
 
 
@@ -129,9 +131,9 @@ def compiler(string):
             line = line[:-1] + ":"
             expected += 1
         
-        if line.endswith("}"):
+        if line.replace(" ","").endswith("}"):
             expected -= 1
-            line = line[:-1]
+            line=line.replace("}", "")
 
         for item in variable_types:
             if line.startswith(item):
@@ -154,6 +156,8 @@ def compiler(string):
 
         new.append(line)
 
+    code = "\n".join(new)
+
     if expected != 0:
         print("Syntax error: Function not closed")
         return
@@ -161,7 +165,19 @@ def compiler(string):
     
     
     #print("\n".join(new))
-    exec("\n".join(new))    
+    
+    code = "\n".join(new)
+    file_name = "file_program.py"
+    compiler_path = r"python"
+    # Get the directory of the current script
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    # Set the working directory to the script's directory
+    os.chdir(script_directory)
+    # Use a with statement for the file handling
+    with open(file_name, "w+") as f:
+        f.write(f"{doc1}\n{code}")
+    subprocess.Popen([compiler_path, file_name]).wait()
+    os.remove(file_name)
     
     if exit == 1:
         main_init_cleanup_super_variable()
