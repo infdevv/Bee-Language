@@ -5,15 +5,31 @@ import asyncio
 import random
 from pathlib import Path
 from time import sleep
+import tkinter as tk
+from tkinter import ttk
+import subprocess
+import os
+import requests
+import sys
+import os
+import subprocess
+import atexit
+
+# on exit delete ./file_program.py from existance
+atexit.register(lambda: os.remove("file_program.py"))
+
+
+"""
 
 version=1.4 
 
 
-"""
-
 Bee# Compiler
 
 """
+
+
+
 
 
 def main_init_live_terminal_end():
@@ -126,7 +142,9 @@ def compiler(string):
             raise ModuleNotFoundError(f"Module {line.replace('#include ', '')} was not found.")
          except Exception as e:
              raise SyntaxError(f"Error executing module {line.replace('#include ', '')}: {str(e)}")
-   
+        
+        
+        
         if line.endswith("{"):
             line = line[:-1] + ":"
             expected += 1
@@ -141,9 +159,9 @@ def compiler(string):
                 # check if = is in the line
                 if "=" not in line:
                     types={
-                        "int": 0,
-                        "float": 0.0,
-                        "str": '""',
+                        "int": "int(0)",
+                        "float": "float(0.0)",
+                        "str": 'str("")',
                         "bool": False
                     }
 
@@ -168,6 +186,8 @@ def compiler(string):
     
     code = "\n".join(new)
     file_name = "file_program.py"
+    # Get the current working directory
+    cwd = os.getcwd()
     compiler_path = r"python"
     # Get the directory of the current script
     script_directory = os.path.dirname(os.path.abspath(__file__))

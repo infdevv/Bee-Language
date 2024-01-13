@@ -19,7 +19,7 @@ rem Save the site_packages_point in config.ini
 echo site_packages_point=%site_packages_point% >> compiler\config.ini
 
 rem Set up an alias for the desired Python command with the full path
-doskey bs=python.exe "%scriptDir%\compiler\index.py" $*
+doskey bs=..\compiler\py-compiler\python.exe "%scriptDir%\compiler\index.py" $*
 
 rem Now you can use "bs code.bee" to execute "python index.py code.bee" from any location
 
@@ -27,16 +27,20 @@ rem Now you can use "bs code.bee" to execute "python index.py code.bee" from any
 
 echo Installing standedard library...
 
-pip install tensorflow
-pip install json
-pip install numpy
-pip install pandas
-pip install discord
-pip install discord.ext 
-pip install tkinter
-pip install matplotlib
-pip install requests
-pip install pathlib
+set "PIP_EXECUTABLE=..\compiler\py-compiler\Scripts\pip.exe"
+
+rem Install required packages
+%PIP_EXECUTABLE% install sys
+%PIP_EXECUTABLE% install os
+%PIP_EXECUTABLE% install subprocess
+%PIP_EXECUTABLE% install asyncio
+%PIP_EXECUTABLE% install random
+%PIP_EXECUTABLE% install pathlib
+%PIP_EXECUTABLE% install tkinter
+%PIP_EXECUTABLE% install ttk
+%PIP_EXECUTABLE% install requests
+%PIP_EXECUTABLE% install atexit
+
 
 echo Finished installing standard library!
 

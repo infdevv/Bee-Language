@@ -1,11 +1,23 @@
 import tkinter as tk
 from tkinter import ttk
 import subprocess
+import os
+
+def add_kip():
+    subprocess.run("installer\\add_kip.bat")
 
 def installer():
     # Create a Toplevel window for the progress bar
     progress_window = tk.Toplevel(window)
     progress_window.title("Installing")
+
+    # Run ./compiler/py-compiler/get-pip.py 
+    # Implementing the comment: Use os.path.join to handle file paths
+    pip_script_path = os.path.join("compiler", "py-compiler", "get-pip.py")
+    subprocess.run(["compiler\\py-compiler\\python.exe", pip_script_path])
+
+    # epic logic for running ./compiler/py-compiler/get-pip.py in a method
+    # so that it alters ./compiler/py-compiler and not ./
 
     # Add a label to show progress
     progress_label = tk.Label(progress_window, text="Installing...")
@@ -22,7 +34,9 @@ def installer():
     progress_window.update()
 
     # Run the installer script in a subprocess
-    subprocess.run("installer\\installer.bat")
+    # Implementing the comment: Use os.path.join to handle file paths
+    installer_script_path = os.path.join("installer", "installer.bat")
+    subprocess.run([installer_script_path])
 
     # Stop the progress bar
     progressbar.stop()
@@ -44,9 +58,10 @@ window.title("Installer")
 
 # Setup the window ( Install button and add Kip to the path checkbox )
 
-# Make it run a batch script when install is clicked, then clear the window and display the finished installing message
+# Make it run a batch script when install is clicked, then clear the window
+# and display the finished installing message
 
-add_kip = tk.Checkbutton(window, text="Add Kip to path", command=lambda: subprocess.run("installer\\add_kip.bat"))
+add_kip = tk.Checkbutton(window, text="Add Kip to path", command=lambda: add_kip())
 add_kip.pack(side=tk.LEFT, fill=tk.X)
 
 install = tk.Button(window, text="Install", command=installer)

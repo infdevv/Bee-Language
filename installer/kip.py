@@ -16,6 +16,7 @@ compiler_url_github="https://raw.githubusercontent.com/infdevv/Bee-Language/main
 
 if __name__ == "__main__":
 
+    
     # If args == upgrade, upgrade
 
     if sys.argv[1] == "upgrade":
@@ -52,6 +53,15 @@ if __name__ == "__main__":
             print("Error: File not found")
 
         print("Upgraded")
+
+    # If args are -p install ( Module ) or -p uninstall ( Module ), install or uninstall via pip
+    
+    if sys.argv[1] == "-p":
+
+        # Run ..\compiler\py-compiler\Scripts\pip.exe install ( Module ) or ..\compiler\py-compiler\Scripts\pip.exe uninstall ( Module )
+
+        subprocess.run(["../compiler/py-compiler/Scripts/pip.exe", sys.argv[2], sys.argv[3]])
+
      
 
     # If args start with install, install

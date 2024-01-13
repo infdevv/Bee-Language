@@ -1,9 +1,21 @@
+v.1.5 of Bee#
+
+ -  Bee# is now completly independent of Python ( :3 )
+ -  pip exists again ( yay )
+ -  Updated standard library
+ -  True independent of a external installation of Python
+ -  Pip installing by Kip
+ 
+
+
+
+
 v.1.4 of Bee#
 
  -  Bee.py ( SHELL/RUNNER ) [X]
  -  Removed reliance on external installation of Python, now using Python 3.8 Embedded version [X] 
  -  Fixed Modules ( Removed module auth ) [X]
- -  
+ 
 
 
 
